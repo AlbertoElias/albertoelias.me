@@ -1,0 +1,31 @@
+{
+  "name": "alberto-elias",
+  "version": "1.0.0",
+  "description": "My live coded personal website",
+  "main": "js/main.js",
+  "module": "js/main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlbertoElias/albertoelias.me"
+  },
+  "author": "Alberto Elias (@aeliasnet)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlbertoElias/albertoelias.me/issues"
+  },
+  "homepage": "https://github.com/AlbertoElias/albertoelias.me",
+  "dependencies": {
+    "highlight.js": "^9.8.0"
+  },
+  "devDependencies": {
+    "standard": "^14.3.1"
+  },
+  "engines": {
+    "node": "^13.0.0"
+  },
+  "standard": {
+    "ignore": [
+      "**/vendor/"
+    ]
+  }
+}

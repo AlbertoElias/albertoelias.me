@@ -1,0 +1,8 @@
+{
+	"short_name": "Alberto Elias",
+	"name": "My world",
+	"start_url": "/index.html",
+	"background_color": "#55662E",
+	"theme_color": "#55662E",
+	"display": "standalone"
+}
