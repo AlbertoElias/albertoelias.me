@@ -31,6 +31,11 @@ class Person {
       const projectEl = document.createElement('li')
       projectEl.classList.add('project')
 
+      const linkEl = document.createElement('a')
+      linkEl.classList.add('project__link')
+      linkEl.href = project.link
+      linkEl.target = '_blank'
+
       const imageEl = document.createElement('img')
       imageEl.classList.add('project__image')
       imageEl.src = project.image
@@ -47,15 +52,17 @@ class Person {
       informationEl.classList.add('project__information')
       const useEl = document.createElementNS('http://www.w3.org/2000/svg', 'use')
       useEl.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#info-circle')
-      informationEl.addEventListener('click', function () {
+      informationEl.addEventListener('click', function (event) {
+        event.preventDefault()
         this.parentElement.classList.toggle('project--show-desc')
       })
       informationEl.appendChild(useEl)
 
-      projectEl.appendChild(imageEl)
-      projectEl.appendChild(nameEl)
-      projectEl.appendChild(descriptionEl)
-      projectEl.appendChild(informationEl)
+      projectEl.appendChild(linkEl)
+      linkEl.appendChild(imageEl)
+      linkEl.appendChild(nameEl)
+      linkEl.appendChild(descriptionEl)
+      linkEl.appendChild(informationEl)
       projectsEl.appendChild(projectEl)
     }
     this.bioEl.appendChild(projectsEl)
