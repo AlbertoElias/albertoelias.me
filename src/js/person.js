@@ -31,14 +31,8 @@ class Person {
       const projectEl = document.createElement('li')
       projectEl.classList.add('project')
 
-      const linkEl = document.createElement('a')
-      linkEl.classList.add('project__link')
-      linkEl.href = project.link
-      linkEl.target = '_blank'
-
-      const imageEl = document.createElement('img')
-      imageEl.classList.add('project__image')
-      imageEl.src = project.image
+      const projectInfoEl = document.createElement('div')
+      projectInfoEl.classList.add('project__info')
 
       const nameEl = document.createElement('h3')
       nameEl.classList.add('project__name')
@@ -48,21 +42,22 @@ class Person {
       descriptionEl.classList.add('project__description')
       descriptionEl.textContent = project.description
 
-      const informationEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
-      informationEl.classList.add('project__information')
-      const useEl = document.createElementNS('http://www.w3.org/2000/svg', 'use')
-      useEl.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#info-circle')
-      informationEl.addEventListener('click', function (event) {
-        event.preventDefault()
-        this.parentElement.classList.toggle('project--show-desc')
-      })
-      informationEl.appendChild(useEl)
+      const linkEl = document.createElement('a')
+      linkEl.classList.add('project__link')
+      linkEl.href = project.link
+      linkEl.target = '_blank'
 
+      const linkIconEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+      linkIconEl.classList.add('project__link-icon')
+      const useEl = document.createElementNS('http://www.w3.org/2000/svg', 'use')
+      useEl.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#caret-right')
+      linkIconEl.appendChild(useEl)
+      linkEl.appendChild(linkIconEl)
+
+      projectInfoEl.appendChild(nameEl)
+      projectInfoEl.appendChild(descriptionEl)
+      projectEl.appendChild(projectInfoEl)
       projectEl.appendChild(linkEl)
-      linkEl.appendChild(imageEl)
-      linkEl.appendChild(nameEl)
-      linkEl.appendChild(descriptionEl)
-      linkEl.appendChild(informationEl)
       projectsEl.appendChild(projectEl)
     }
     this.bioEl.appendChild(projectsEl)

@@ -20,10 +20,12 @@ class JSConsole {
     this.debug = options.debug
 
     this.consoleEl = consoleElement
+    this.wrapperEl = this.consoleEl.parentElement
     this.inputEl = this.consoleEl.querySelector('.js-console__input')
     this.commandsEl = this.consoleEl.querySelector('.js-console__commands')
 
     this.initListener()
+    this.initDraggable()
 
     if (options.autoplay) {
       this.commandListIterator = this.commandListGenerator(options.commandList)
@@ -95,6 +97,31 @@ class JSConsole {
    */
   initListener () {
     this.inputEl.addEventListener('keydown', this._keydownHandler.bind(this))
+  }
+
+  /**
+   * Based on the touch position, changes the js-console height
+   * @param {Event} event
+   */
+  _dragHandler (event) {
+    event.preventDefault()
+    console.log(event)
+    const touch = event.touches[0]
+    const touchY = window.innerHeight - touch.clientY
+    if (touchY >= 240 && touchY <= window.innerHeight) {
+      this.wrapperEl.style.height = `${touchY}px`
+      this.consoleEl.style.height = `${touchY}px`
+    }
+  }
+
+  /**
+   * Handles the events on the draggable element
+   *
+   * @return {undefined}
+   */
+  initDraggable () {
+    const dragEl = this.consoleEl.querySelector('.js-console-drag')
+    dragEl.addEventListener('touchmove', this._dragHandler.bind(this))
   }
 
   /**
