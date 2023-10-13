@@ -45,18 +45,29 @@ body {
 	margin: 0;
 	font-size: 10px;
 	display: flex;
-	justify-content: space-between;
 	background-color: var(--yellow);
 	color: var(--grey)
 }
 
-.bio {
+.bio-wrapper {
 	position: fixed;
 	height: calc(100vh - 200px);
-	overflow-y: auto;
 	max-width: 100vw;
+	width: 100%;
 	text-align: left;
 	padding: 0 20px;
+}
+
+.bio {
+	height: 100%;
+	width: 100%;
+	overflow-y: auto;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.bio::-webkit-scrollbar {
+	display: none;
 }
 
 .shout {
@@ -161,8 +172,13 @@ body {
 	fill: var(--yellow);
 }
 
-.js-console {
+.js-console-wrapper {
 	position: fixed;
+	height: 100vh;
+	width: 100vw;
+}
+
+.js-console {
 	bottom: 0;
 	order: 2;
 	height: 200px;
@@ -171,6 +187,7 @@ body {
 	flex-direction: column;
 	padding: 0;
 	overflow: hidden;
+	border-radius: 20px;
 }
 
 .js-console__commands {
@@ -217,21 +234,31 @@ body {
 
 .js-console code {
 	word-break: break-word;
-    white-space: normal;
+  white-space: normal;
 }
 
 /* Console is 500px, Bio is 800px + 40px margin */
 @media only screen and (min-width: 1340px) {
-	.bio {
+	.bio-wrapper {
 		position: relative;
 		height: 100vh;
+		display: flex;
+		justify-content: center;
+	}
+
+	.bio {
 		max-width: 800px;
 	}
 
-	.js-console {
+	.js-console-wrapper {
 		position: relative;
 		min-height: 100vh;
 		min-width: 500px;
 		max-width: 500px;
+		padding: 16px;
+	}
+
+	.js-console {
+		height: 100%;
 	}
 }
