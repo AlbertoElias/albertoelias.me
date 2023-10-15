@@ -1,4 +1,4 @@
-@import "vendor/solarized_dark.css";
+@import "vendor/ia-dark.css";
 
 /* latin */
 @font-face {
@@ -31,12 +31,10 @@
 }
 
 :root {
-	--blue: #002B36;
-	--link1: #E75152;
-	--link2: #172bf4;
-	--link: #0864c0;
-	--main: #98c1ae;
-	--text: #000;
+	--link: #EA5C0D;
+	--main: #C2E1D2;
+	--text: #55625C;
+	--heading: #171B19;
 }
 
 * {
@@ -103,10 +101,17 @@ a {
 }
 
 .project {
-	display: flex;
-	justify-content: space-between;
 	width: 100%;
 	margin-bottom: 24px;
+	background: rgba(255, 255, 255, 0.2);
+	padding: 32px;
+	border-radius: 12px;
+}
+
+.project__link {
+	display: flex;
+	justify-content: space-between;
+	color: var(--text);
 }
 
 .project__info {
@@ -119,6 +124,7 @@ a {
 	font-size: 2.4em;
 	font-weight: 400;
 	margin: 0;
+	color: var(--heading);
 }
 
 .project__description {
@@ -127,7 +133,7 @@ a {
 	margin-bottom: 0;
 }
 
-.project__link {
+.project__icon-wrapper {
 	min-width: 32px;
 	height: 32px;
 	display: flex;
@@ -135,14 +141,14 @@ a {
 	justify-content: center;
 	align-self: center;
 	margin-left: 32px;
-	border: 1px solid var(--text);
+	background: white;
 	border-radius: 50%;
 }
 
-.project__link-icon {
+.project__icon {
 	width: 24px;
 	height: 24px;
-	fill: var(--text);
+	fill: var(--link);
 }
 
 .js-console-wrapper {
@@ -246,7 +252,7 @@ a {
 		max-width: 800px;
 	}
 
-	.project__link {
+	.project__icon-wrapper {
 		margin-left: 64px;
 	}
 

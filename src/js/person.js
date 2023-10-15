@@ -31,6 +31,11 @@ class Person {
       const projectEl = document.createElement('li')
       projectEl.classList.add('project')
 
+      const linkEl = document.createElement('a')
+      linkEl.classList.add('project__link')
+      linkEl.href = project.link
+      linkEl.target = '_blank'
+
       const projectInfoEl = document.createElement('div')
       projectInfoEl.classList.add('project__info')
 
@@ -42,21 +47,19 @@ class Person {
       descriptionEl.classList.add('project__description')
       descriptionEl.textContent = project.description
 
-      const linkEl = document.createElement('a')
-      linkEl.classList.add('project__link')
-      linkEl.href = project.link
-      linkEl.target = '_blank'
-
-      const linkIconEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
-      linkIconEl.classList.add('project__link-icon')
+      const iconWrapperEl = document.createElement('div')
+      iconWrapperEl.classList.add('project__icon-wrapper')
+      const iconEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+      iconEl.classList.add('project__icon')
       const useEl = document.createElementNS('http://www.w3.org/2000/svg', 'use')
-      useEl.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#caret-right')
-      linkIconEl.appendChild(useEl)
-      linkEl.appendChild(linkIconEl)
+      useEl.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#arrow-right')
+      iconEl.appendChild(useEl)
+      iconWrapperEl.appendChild(iconEl)
 
       projectInfoEl.appendChild(nameEl)
       projectInfoEl.appendChild(descriptionEl)
-      projectEl.appendChild(projectInfoEl)
+      linkEl.appendChild(projectInfoEl)
+      linkEl.appendChild(iconWrapperEl)
       projectEl.appendChild(linkEl)
       projectsEl.appendChild(projectEl)
     }
