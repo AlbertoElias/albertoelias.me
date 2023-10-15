@@ -32,14 +32,10 @@
 
 :root {
 	--blue: #002B36;
-	--main1: #FFFDE7;
 	--link1: #E75152;
 	--link2: #172bf4;
 	--link: #0864c0;
-	--main2: #055A5B;
-	--main3: #FBFE56;
-	--main4: #FDF06F;
-	--main: #FBFE56;
+	--main: #98c1ae;
 	--text: #000;
 }
 
@@ -242,6 +238,8 @@ a {
 		height: 100vh;
 		display: flex;
 		justify-content: center;
+		padding: 0;
+    max-width: calc(100vw - 516px);
 	}
 
 	.bio {
