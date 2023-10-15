@@ -32,7 +32,7 @@
 body {
 	font-family: 'Inter', sans-serif;
 	margin: 0;
-	font-size: 10px;
+	font-size: 16px;
 	display: flex;
 	background-color: var(--main);
 	color: var(--text)
@@ -66,18 +66,18 @@ a {
 }
 
 .shout {
-	font-size: 5.2em;
-	font-weight: 700;
+	font-size: 48px;
+	font-weight: 600;
   margin: 0;
 }
 
 .emphasize {
-	font-size: 2.4em;
-	font-weight: 700;
+	font-size: 16px;
+	font-weight: 600;
 }
 
 .say {
-	font-size: 2.4em;
+	font-size: 16px;
 	font-weight: 400;
 }
 
@@ -92,14 +92,18 @@ a {
 	width: 100%;
 	margin-bottom: 24px;
 	background: rgba(255, 255, 255, 0.2);
-	padding: 32px;
 	border-radius: 12px;
+}
+
+.project:hover {
+	background: white;
 }
 
 .project__link {
 	display: flex;
 	justify-content: space-between;
 	color: var(--text);
+	padding: 32px;
 }
 
 .project__info {
@@ -109,15 +113,14 @@ a {
 }
 
 .project__name {
-	font-size: 2.4em;
+	font-size: 28px;
 	font-weight: 400;
 	margin: 0;
 	color: var(--heading);
 }
 
 .project__description {
-	font-size: 2em;
-	margin-top: 20px;
+	margin-top: 16px;
 	margin-bottom: 0;
 }
 
@@ -133,10 +136,18 @@ a {
 	border-radius: 50%;
 }
 
+.project:hover .project__icon-wrapper {
+	background: var(--link);
+}
+
 .project__icon {
 	width: 24px;
 	height: 24px;
 	fill: var(--link);
+}
+
+.project:hover .project__icon {
+	fill: white;
 }
 
 .js-console-wrapper {

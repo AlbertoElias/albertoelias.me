@@ -12,7 +12,7 @@ const myCommandsList = [
   'me.name = \'Alberto Elias\'',
   'me.announce(`Hey!👋 I\'m ${me.name}`)',
   'me.emphasize(`I\'m a senior Web developer with experience leading teams`)',
-  'me.say(`My side-projects revolve around spatial and decentralized technologies.`',
+  'me.say(`My side-projects revolve around spatial and decentralized technologies.`)',
   'me.say(`Lately, I\'ve been writing about tech, VR, decentralization and my life learnings in my ${addLink(`Substack`, `https://albertoelias.substack.com/`)}.`)',
   'me.say(`Find me on ${addLink(`Twitter`, `https://twitter.com/aeliasnet`)}, ${addLink(`Github`, `https://github.com/AlbertoElias`)}, ${addLink(`Linkedin`, `https://www.linkedin.com/in/albertoelias`)}`)',
   'me.say(addLink(`Let\'s collaborate! 🤗`, `mailto:hi@albertoelias.me`))',

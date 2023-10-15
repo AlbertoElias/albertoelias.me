@@ -58,7 +58,7 @@ class JSConsole {
     const preEl = document.createElement('pre')
     const codeEl = document.createElement('code')
     codeEl.textContent = `${command}`
-    hljs.highlightBlock(codeEl)
+    hljs.highlightElement(codeEl)
     preEl.appendChild(codeEl)
     commandEl.appendChild(preEl)
     this.commandsEl.appendChild(commandEl)
