@@ -4,7 +4,7 @@ import { JSConsole } from './jsconsole.js'
 import { Person } from './person.js'
 
 /** Debug mode for the app. (Default: false) */
-const debug = true
+const debug = false
 
 const myCommandsList = [
   'const bioEl = document.querySelector(".bio")',
@@ -26,31 +26,31 @@ function fetchProjects () {
       name: 'Financial Times',
       image: '/assets/projects/ft.jpg',
       link: 'https://ft.com',
-      description: 'Worked on the components and tools that power FT sites including ft.com.'
+      description: 'Worked on the Origami team where we built a UI component system for all the different FT products making it easier to build and upgrade these products, and also to unify the brand.'
     },
     {
       name: 'Polygon Hermez',
       image: '/assets/projects/hermez.jpg',
       link: 'https://hermez.io/',
-      description: 'Led the frontend team that built all Web apps for Polygon Hermez including the crypto wallet.'
+      description: 'Led the Web development of crypto wallets, identity solutions and other tooling. I built the Frontend team and helped with Project Management.'
     },
     {
       name: 'Simbol Identity',
       image: '/assets/projects/simbol-identity.jpg',
       link: 'https://github.com/wearesimbol/simbol-identity-manager',
-      description: 'Prototype of a VR identity system where people own their data.'
+      description: 'Self-sovereign identity system for VR/AR. Easy to use avatar and identity that can transition between sites while keeping complete control of their data.'
     },
     {
       name: 'Simbol World',
       image: 'assets/projects/simbol-world.jpg',
       link: 'https://github.com/wearesimbol/simbol-world',
-      description: 'Prototype of a WebXR library to create multiuser virtual worlds with a self-sovereign identity system.'
+      description: 'WebXR library to create multiuser virtual worlds with self-sovereign identity and locomotion systems.'
     },
     {
       name: 'Holo Presentation',
       image: 'assets/projects/holo-presentation.jpg',
       link: 'https://holo-presentation.vercel.app/',
-      description: 'A prototype to test out presentations native to 3D environments.'
+      description: 'A prototype to test out presentations native to 3D environments. Like PowerPoint but in VR.'
     },
     {
       name: 'Solana Discord Bot',
