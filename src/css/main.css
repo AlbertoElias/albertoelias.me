@@ -55,11 +55,11 @@ a {
 
 .bio {
 	height: 100%;
-	width: 100%;
+	width: calc(100% - 40px);
 	overflow-y: auto;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
-	margin-top: 64px;
+	padding-top: 32px;
 }
 
 .bio::-webkit-scrollbar {
@@ -247,8 +247,7 @@ a {
 	padding: 8px 0;
 }
 
-/* Console is 500px, Bio is 800px + 40px margin */
-@media only screen and (min-width: 1340px) {
+@media only screen and (min-width: 1024px) {
 	.bio-wrapper {
 		position: relative;
 		height: 100vh;
@@ -260,6 +259,7 @@ a {
 
 	.bio {
 		max-width: 800px;
+		padding-top: 64px;
 	}
 
 	.project__icon-wrapper {
