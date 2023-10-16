@@ -55,7 +55,7 @@ a {
 
 .bio {
 	height: 100%;
-	width: calc(100% - 40px);
+	width: 100%;
 	overflow-y: auto;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
@@ -257,6 +257,7 @@ a {
 
 	.bio {
 		max-width: 800px;
+		width: calc(100% - 40px);
 		padding-top: 64px;
 	}
 
