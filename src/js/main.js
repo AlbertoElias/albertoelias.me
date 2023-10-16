@@ -16,7 +16,6 @@ const myCommandsList = [
   'me.say(`Lately, I\'ve been writing about tech, VR, decentralization and my life learnings in my ${addLink("Substack", "https://albertoelias.substack.com/")}.`)',
   'me.say(`Find me on ${addLink("Twitter", "https://twitter.com/aeliasnet")}, ${addLink("Github", "https://github.com/AlbertoElias")}, ${addLink("Linkedin", "https://www.linkedin.com/in/albertoelias")}`)',
   'me.say(addLink("Let\'s collaborate! 🙌🏻", "mailto:hi@albertoelias.me"))',
-  'me.emphasize("Check out my projects and past work experiences:")',
   'const myProjects = fetchProjects()',
   'me.showProjects(myProjects)'
 ]
