@@ -1,5 +1,12 @@
 /* global hljs */
 
+hljs.configure({
+  languages: ['javascript'],
+  es: {
+    next: true
+  }
+})
+
 /**
  * JSConsole
  * @namespace
@@ -58,7 +65,8 @@ class JSConsole {
     const commandEl = document.createElement('li')
     const preEl = document.createElement('pre')
     const codeEl = document.createElement('code')
-    codeEl.textContent = `${command}`
+    codeEl.classList.add('language-javascript')
+    codeEl.textContent = command
     hljs.highlightElement(codeEl)
     preEl.appendChild(codeEl)
     commandEl.appendChild(preEl)

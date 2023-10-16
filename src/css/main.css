@@ -221,7 +221,6 @@ a {
 	align-self: center;
 	padding-right: 4px;
 	font-size: 16px;
-	line-height: 24px;
 	color: var(--console);
 }
 
@@ -232,7 +231,6 @@ a {
 	border: none;
 	outline: 0;
 	font-size: 16px;
-	line-height: 24px;
 	caret-color: var(--console);
 	color: var(--console);
 }
