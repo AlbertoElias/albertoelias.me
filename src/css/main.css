@@ -51,6 +51,14 @@ a {
 	width: 100%;
 	text-align: left;
 	padding: 0 20px;
+	overflow: auto;
+	overflow-y: auto;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.bio-wrapper::-webkit-scrollbar {
+	display: none;
 }
 
 .bio {
