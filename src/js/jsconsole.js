@@ -23,6 +23,7 @@ class JSConsole {
     this.wrapperEl = this.consoleEl.parentElement
     this.inputEl = this.consoleEl.querySelector('.js-console__input')
     this.commandsEl = this.consoleEl.querySelector('.js-console__commands')
+    this._dragHandler = this._dragHandler.bind(this)
 
     this.initListener()
     this.initDraggable()
@@ -104,13 +105,13 @@ class JSConsole {
    * @param {Event} event
    */
   _dragHandler (event) {
+    if (!event.touches && !this.dragging) return
     event.preventDefault()
-    console.log(event)
-    const touch = event.touches[0]
-    const touchY = window.innerHeight - touch.clientY
-    if (touchY >= 240 && touchY <= window.innerHeight) {
-      this.wrapperEl.style.height = `${touchY}px`
-      this.consoleEl.style.height = `${touchY}px`
+    const clientY = event.touches ? event.touches[0].clientY : event.clientY
+    const newHeight = window.innerHeight - clientY
+    if (newHeight >= 240 && newHeight <= window.innerHeight) {
+      this.wrapperEl.style.height = `${newHeight}px`
+      this.consoleEl.style.height = `${newHeight}px`
     }
   }
 
@@ -121,7 +122,16 @@ class JSConsole {
    */
   initDraggable () {
     const dragEl = this.consoleEl.querySelector('.js-console-drag')
-    dragEl.addEventListener('touchmove', this._dragHandler.bind(this))
+    dragEl.addEventListener('touchmove', this._dragHandler)
+    dragEl.addEventListener('mousedown', () => {
+      this.dragging = true
+      window.addEventListener('mousemove', this._dragHandler)
+    })
+    window.addEventListener('mouseup', () => {
+      if (!this.dragging) return
+      this.dragging = false
+      window.removeEventListener('mousemove', this._dragHandler)
+    })
   }
 
   /**
