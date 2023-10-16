@@ -177,7 +177,7 @@ class JSConsole {
    */
   autoplayCommands () {
     const charsDelay = 20
-    const commandDelay = 200
+    const commandDelay = 100
     const commandsIterator = this.commandListIterator.next()
     if (!commandsIterator.done) {
       const commandIterator = this.commandGenerator(commandsIterator.value)
@@ -186,10 +186,15 @@ class JSConsole {
         const chars = commandIterator.next()
         if (!chars.done) {
           this.inputEl.value += chars.value
+          this.inputEl.scroll({ left: this.inputEl.scrollWidth, behaviour: 'smooth' })
         } else {
           this.submitCommand()
           clearInterval(charInterval)
-          setTimeout(this.autoplayCommands.bind(this), this.debug ? 0 : commandDelay)
+          if (this.debug) {
+            this.autoplayCommands()
+          } else {
+            setTimeout(() => this.autoplayCommands(), commandDelay)
+          }
         }
       }, this.debug ? 0 : charsDelay)
     } else {
