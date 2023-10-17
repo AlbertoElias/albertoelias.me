@@ -99,6 +99,10 @@ a {
 	border-radius: 12px;
 }
 
+.project:last-child {
+	margin-bottom: 32px;
+}
+
 .project:hover {
 	background: white;
 }
@@ -269,6 +273,10 @@ a {
 
 	.projects {
 		margin-top: 48px;
+	}
+
+	.project:last-child {
+		margin-bottom: 48px;
 	}
 
 	.project__icon-wrapper {

@@ -176,7 +176,7 @@ class JSConsole {
    * @return {undefined}
    */
   autoplayCommands () {
-    const charsDelay = 20
+    const charsDelay = 12
     const commandDelay = 100
     const commandsIterator = this.commandListIterator.next()
     if (!commandsIterator.done) {
