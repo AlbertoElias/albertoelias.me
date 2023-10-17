@@ -21,7 +21,7 @@
 :root {
 	--main: #FAE480;
 	--heading: #171B19;
-	--text: rgba(23, 27, 25, 0.52);
+	--text: rgba(23, 27, 25, 0.72);
 	--console: #CCCCCC;
 	--card: rgba(23, 27, 25, 0.04);
 	--icon-wrapper: #FFFFFF;
@@ -31,18 +31,18 @@
 :root.green-theme {
 	--main: #36855F;
 	--heading: #FFFFFF;
-	--text: rgba(255, 255, 255, 0.52);
+	--text: rgba(255, 255, 255, 0.72);
 	--heading-dark: #171B19;
-	--text-dark: rgba(23, 27, 25, 0.52);
+	--text-dark: rgba(23, 27, 25, 0.72);
 	--card: rgba(23, 27, 25, 0.1);
 }
 
 :root.dark-theme {
 	--main: #40484E;
 	--heading: #FFFFFF;
-	--text: rgba(255, 255, 255, 0.52);
+	--text: rgba(255, 255, 255, 0.72);
 	--heading-dark: #171B19;
-	--text-dark: rgba(23, 27, 25, 0.52);
+	--text-dark: rgba(23, 27, 25, 0.72);
 	--card: rgba(255, 255, 255, 0.08);
 }
 
