@@ -4,7 +4,7 @@ import { JSConsole } from './jsconsole.js'
 import { Person } from './person.js'
 
 /** Debug mode for the app. (Default: false) */
-const debug = false
+const debug = true
 
 const myCommandsList = [
   'const bioEl = document.querySelector(".bio")',
@@ -15,7 +15,7 @@ const myCommandsList = [
   'me.say("My side-projects revolve around spatial and decentralized technologies.")',
   'me.say(`Lately, I\'ve been writing about tech, VR, decentralization and my life learnings in my ${addLink("Substack", "https://albertoelias.substack.com/")}.`)',
   'me.say(`Find me on ${addLink("Twitter", "https://twitter.com/aeliasnet")}, ${addLink("Github", "https://github.com/AlbertoElias")}, ${addLink("Linkedin", "https://www.linkedin.com/in/albertoelias")}`)',
-  'me.say(addLink("Let\'s collaborate! 🙌🏻", "mailto:hi@albertoelias.me"))',
+  'me.say(addLink("Let\'s collaborate! 🔥", "mailto:hi@albertoelias.me"))',
   'const myProjects = fetchProjects()',
   'me.showProjects(myProjects)'
 ]

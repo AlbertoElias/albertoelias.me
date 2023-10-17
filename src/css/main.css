@@ -19,11 +19,31 @@
 }
 
 :root {
-	--link: #EA5C0D;
-	--main: #C2E1D2;
-	--text: #55625C;
-	--console: #CCCCCC;
+	--main: #FAE480;
 	--heading: #171B19;
+	--text: rgba(23, 27, 25, 0.52);
+	--console: #CCCCCC;
+	--card: rgba(23, 27, 25, 0.04);
+	--icon-wrapper: #FFFFFF;
+	--icon: #171B19;
+}
+
+:root.green-theme {
+	--main: #36855F;
+	--heading: #FFFFFF;
+	--text: rgba(255, 255, 255, 0.52);
+	--heading-dark: #171B19;
+	--text-dark: rgba(23, 27, 25, 0.52);
+	--card: rgba(23, 27, 25, 0.1);
+}
+
+:root.dark-theme {
+	--main: #40484E;
+	--heading: #FFFFFF;
+	--text: rgba(255, 255, 255, 0.52);
+	--heading-dark: #171B19;
+	--text-dark: rgba(23, 27, 25, 0.52);
+	--card: rgba(23, 27, 25, 0.08);
 }
 
 * {
@@ -40,8 +60,8 @@ body {
 }
 
 a {
-	color: var(--link);
-	text-decoration: none;
+	color: var(--heading);
+	text-underline-position: under;
 }
 
 .bio-wrapper {
@@ -95,7 +115,7 @@ a {
 .project {
 	width: 100%;
 	margin-bottom: 24px;
-	background: #CEE7DB;
+	background: var(--card);
 	border-radius: 12px;
 }
 
@@ -112,6 +132,7 @@ a {
 	justify-content: space-between;
 	color: var(--text);
 	padding: 32px;
+	text-decoration: none;
 }
 
 .project__info {
@@ -127,9 +148,19 @@ a {
 	color: var(--heading);
 }
 
+:root.green-theme .project:hover .project__name,
+:root.dark-theme .project:hover .project__name {
+	color: var(--heading-dark);
+}
+
 .project__description {
 	margin-top: 16px;
 	margin-bottom: 0;
+}
+
+:root.green-theme .project:hover .project__description,
+:root.dark-theme .project:hover .project__description {
+	color: var(--text-dark);
 }
 
 .project__icon-wrapper {
@@ -140,22 +171,22 @@ a {
 	justify-content: center;
 	align-self: center;
 	margin-left: 32px;
-	background: white;
+	background: var(--icon-wrapper);
 	border-radius: 50%;
 }
 
 .project:hover .project__icon-wrapper {
-	background: var(--link);
+	background: var(--icon);
 }
 
 .project__icon {
 	width: 24px;
 	height: 24px;
-	fill: var(--link);
+	fill: var(--icon);
 }
 
 .project:hover .project__icon {
-	fill: white;
+	fill: var(--icon-wrapper);
 }
 
 .js-console-wrapper {
