@@ -185,6 +185,8 @@ a {
 	justify-content: center;
 	margin: 8px 0;
 	cursor: pointer;
+	/* Prevents element highligting when holder tap */
+	-webkit-tap-highlight-color: transparent;
 }
 
 .js-console-drag::after {

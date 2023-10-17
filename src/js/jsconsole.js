@@ -117,7 +117,7 @@ class JSConsole {
     event.preventDefault()
     const clientY = event.touches ? event.touches[0].clientY : event.clientY
     const newHeight = window.innerHeight - clientY
-    if (newHeight >= 240 && newHeight <= window.innerHeight) {
+    if (newHeight >= 240 && newHeight <= window.innerHeight - 64) {
       this.wrapperEl.style.height = `${newHeight}px`
       this.consoleEl.style.height = `${newHeight}px`
     }
@@ -139,6 +139,16 @@ class JSConsole {
       if (!this.dragging) return
       this.dragging = false
       window.removeEventListener('mousemove', this._dragHandler)
+    })
+    dragEl.addEventListener('click', () => {
+      if (this.wrapperEl.style.height === '240px') {
+        const newHeight = window.innerHeight - 64
+        this.wrapperEl.style.height = `${newHeight}px`
+        this.consoleEl.style.height = `${newHeight}px`
+      } else {
+        this.wrapperEl.style.height = '240px'
+        this.consoleEl.style.height = '240px'
+      }
     })
   }
 
