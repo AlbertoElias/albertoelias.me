@@ -5,24 +5,44 @@
 	<meta name="viewport" content="initial-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" />
 	<link rel="shortcut icon" type="image/png" href="assets/favicon.png">
 	<link rel="stylesheet" href="src/css/main.css">
-	<link rel="manifest" href="/manifest.json">
+	<link rel="manifest" id="manifest">
 	<title>Alberto Elias</title>
 	<script>
+		const manifestJSON = {
+			"short_name": "Alberto Elias",
+			"name": "Alberto Elias",
+			"description": "My personal website",
+			"start_url": "/index.html"
+		}
+
 		const randomThemeInt = Math.floor(Math.random() * (4 - 1 + 1) + 1)
 		switch (randomThemeInt) {
 			case 1:
 				document.documentElement.classList.add('yellow-theme');
+				manifestJSON.background_color = '#FAE480'
+				manifestJSON.theme_color = '#FAE480'
 				break;
 			case 2:
 				document.documentElement.classList.add('green-theme');
+				manifestJSON.background_color = '#36855F'
+				manifestJSON.theme_color = '#36855F'
 				break;
 			case 3:
 				document.documentElement.classList.add('dark-theme');
+				manifestJSON.background_color = '#40484E'
+				manifestJSON.theme_color = '#40484E'
 				break;
 			case 4:
 				document.documentElement.classList.add('purple-theme');
+				manifestJSON.background_color = '#733667'
+				manifestJSON.theme_color = '#733667'
 				break;
 		}
+
+		const stringManifest = JSON.stringify(manifestJSON);
+		const blob = new Blob([stringManifest], {type: 'application/json'});
+		const manifestURL = URL.createObjectURL(blob);
+		document.querySelector('#manifest').setAttribute('href', manifestURL);
 	</script>
 </head>
 <body>

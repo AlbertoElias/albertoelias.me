@@ -50,14 +50,6 @@ class JSConsole {
    * @return {undefined}
   */
   runCommand (command) {
-    // Eval doesn't work in Firefox as it runs each command in separate scopes
-    /*
-    const indirectEval = eval;
-    (window.execScript || function(command) {
-      indirectEval(command);
-    })(command);
-    */
-
     const script = document.createElement('script')
     script.text = command
     document.head.appendChild(script).parentNode.removeChild(script)
@@ -139,11 +131,18 @@ class JSConsole {
     })
 
     window.addEventListener('mouseup', () => {
+      // console.log('mouseup', this.dragging)
       if (!this.dragging) return
       this.dragging = false
       window.removeEventListener('mousemove', this._dragHandler)
     })
-    dragEl.addEventListener('click', () => {
+    dragEl.addEventListener('click', (event) => {
+      // console.log('click', this.dragging)
+      event.preventDefault()
+      event.stopPropagation()
+      if (this.wrapperEl.style.height === '') {
+        this.wrapperEl.style.height = minHeight
+      }
       if (this.wrapperEl.style.height === minHeight) {
         const newHeight = window.innerHeight - 64
         this.wrapperEl.style.height = `${newHeight}px`
@@ -199,7 +198,7 @@ class JSConsole {
         const chars = commandIterator.next()
         if (!chars.done) {
           this.inputEl.value += chars.value
-          this.inputEl.scroll({ left: this.inputEl.scrollWidth, behaviour: 'smooth' })
+          this.inputEl.scrollLeft = this.inputEl.scrollWidth
         } else {
           this.submitCommand()
           clearInterval(charInterval)

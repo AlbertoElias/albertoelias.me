@@ -80,8 +80,6 @@ function init () {
     autoplay: true,
     debug: debug
   })
-
-
 }
 
 init()
