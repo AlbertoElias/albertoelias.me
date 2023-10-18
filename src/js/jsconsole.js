@@ -139,7 +139,7 @@ class JSConsole {
       this.dragging = false
       window.removeEventListener('mousemove', this._dragHandler)
     })
-    dragEl.addEventListener('click', (event) => {
+    dragEl.addEventListener('click', () => {
       console.log('click', this.dragging)
       this.wrapperEl.classList.add('js-console-transition')
       this.consoleEl.classList.add('js-console-transition')
@@ -153,12 +153,14 @@ class JSConsole {
       } else {
         this.wrapperEl.style.height = minHeight
         this.consoleEl.style.height = minHeight
-        setTimeout(() => {
-          this.commandsEl.scroll({ top: this.commandsEl.scrollHeight, behaviour: 'smooth' })
-          this.wrapperEl.classList.remove('js-console-transition')
-          this.consoleEl.classList.remove('js-console-transition')
-        }, 550)
       }
+      setTimeout(() => {
+        if (this.wrapperEl.style.height === minHeight) {
+          this.commandsEl.scroll({ top: this.commandsEl.scrollHeight, behaviour: 'smooth' })
+        }
+        this.wrapperEl.classList.remove('js-console-transition')
+        this.consoleEl.classList.remove('js-console-transition')
+      }, 550)
     })
   }
 
