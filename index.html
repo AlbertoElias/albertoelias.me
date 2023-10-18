@@ -8,7 +8,7 @@
 	<link rel="manifest" href="/manifest.json">
 	<title>Alberto Elias</title>
 	<script>
-		const randomThemeInt = Math.floor(Math.random() * (3 - 1 + 1) + 1)
+		const randomThemeInt = Math.floor(Math.random() * (4 - 1 + 1) + 1)
 		switch (randomThemeInt) {
 			case 1:
 				document.documentElement.classList.add('yellow-theme');
@@ -18,6 +18,9 @@
 				break;
 			case 3:
 				document.documentElement.classList.add('dark-theme');
+				break;
+			case 4:
+				document.documentElement.classList.add('purple-theme');
 				break;
 		}
 	</script>
