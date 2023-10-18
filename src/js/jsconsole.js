@@ -109,7 +109,6 @@ class JSConsole {
     if (!event.touches && !this.dragging) return
     // Converts from '180px' to Number
     const minHeight = Number(window.getComputedStyle(document.documentElement).getPropertyValue('--console-height').slice(0, -2))
-    console.log(minHeight)
     const clientY = event.touches ? event.touches[0].clientY : event.clientY
     const newHeight = window.innerHeight - clientY
     if (newHeight >= minHeight && newHeight <= window.innerHeight - 64) {
@@ -134,13 +133,12 @@ class JSConsole {
     })
 
     window.addEventListener('mouseup', () => {
-      console.log('mouseup', this.dragging)
       if (!this.dragging) return
       this.dragging = false
       window.removeEventListener('mousemove', this._dragHandler)
     })
+
     dragEl.addEventListener('click', () => {
-      console.log('click', this.dragging)
       this.wrapperEl.classList.add('js-console-transition')
       this.consoleEl.classList.add('js-console-transition')
       if (this.wrapperEl.style.height === '') {
