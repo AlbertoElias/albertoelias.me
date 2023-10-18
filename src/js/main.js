@@ -4,7 +4,7 @@ import { JSConsole } from './jsconsole.js'
 import { Person } from './person.js'
 
 /** Debug mode for the app. (Default: false) */
-const debug = false
+const debug = true
 
 const myCommandsList = [
   'const bioEl = document.querySelector(".bio")',

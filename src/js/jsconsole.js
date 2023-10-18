@@ -105,11 +105,14 @@ class JSConsole {
    * @param {Event} event
    */
   _dragHandler (event) {
-    if (!event.touches && !this.dragging) return
     event.preventDefault()
+    if (!event.touches && !this.dragging) return
+    // Converts from '180px' to Number
+    const minHeight = Number(window.getComputedStyle(document.documentElement).getPropertyValue('--console-height').slice(0, -2))
+    console.log(minHeight)
     const clientY = event.touches ? event.touches[0].clientY : event.clientY
     const newHeight = window.innerHeight - clientY
-    if (newHeight >= 240 && newHeight <= window.innerHeight - 64) {
+    if (newHeight >= minHeight && newHeight <= window.innerHeight - 64) {
       this.wrapperEl.style.height = `${newHeight}px`
       this.consoleEl.style.height = `${newHeight}px`
     }
@@ -131,15 +134,15 @@ class JSConsole {
     })
 
     window.addEventListener('mouseup', () => {
-      // console.log('mouseup', this.dragging)
+      console.log('mouseup', this.dragging)
       if (!this.dragging) return
       this.dragging = false
       window.removeEventListener('mousemove', this._dragHandler)
     })
     dragEl.addEventListener('click', (event) => {
-      // console.log('click', this.dragging)
-      event.preventDefault()
-      event.stopPropagation()
+      console.log('click', this.dragging)
+      this.wrapperEl.classList.add('js-console-transition')
+      this.consoleEl.classList.add('js-console-transition')
       if (this.wrapperEl.style.height === '') {
         this.wrapperEl.style.height = minHeight
       }
@@ -150,6 +153,11 @@ class JSConsole {
       } else {
         this.wrapperEl.style.height = minHeight
         this.consoleEl.style.height = minHeight
+        setTimeout(() => {
+          this.commandsEl.scroll({ top: this.commandsEl.scrollHeight, behaviour: 'smooth' })
+          this.wrapperEl.classList.remove('js-console-transition')
+          this.consoleEl.classList.remove('js-console-transition')
+        }, 550)
       }
     })
   }
@@ -188,8 +196,8 @@ class JSConsole {
    * @return {undefined}
    */
   autoplayCommands () {
-    const charsDelay = 12
-    const commandDelay = 100
+    const charsDelay = 6
+    const commandDelay = 50
     const commandsIterator = this.commandListIterator.next()
     if (!commandsIterator.done) {
       const commandIterator = this.commandGenerator(commandsIterator.value)
