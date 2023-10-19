@@ -105,8 +105,8 @@ class JSConsole {
    * @param {Event} event
    */
   _dragHandler (event) {
-    event.preventDefault()
     if (!this.dragging) return
+    event.preventDefault()
     // Converts from '180px' to Number
     const minHeight = Number(window.getComputedStyle(document.documentElement).getPropertyValue('--console-height').slice(0, -2))
     const newHeight = window.innerHeight - event.clientY
@@ -122,9 +122,11 @@ class JSConsole {
    * @return {undefined}
    */
   initDraggable () {
-    const minHeight = window.getComputedStyle(document.documentElement).getPropertyValue('--console-height')
+    const maxHeight = window.innerHeight - 64
+    const minHeight = Number(window.getComputedStyle(document.documentElement).getPropertyValue('--console-height').slice(0, -2))
+    const midHeight = minHeight + Math.floor((maxHeight - minHeight) / 2)
     if (this.wrapperEl.style.height === '') {
-      this.wrapperEl.style.height = minHeight
+      this.wrapperEl.style.height = `${minHeight}px`
     }
     const dragEl = this.consoleEl.querySelector('.js-console-drag')
 
@@ -137,21 +139,21 @@ class JSConsole {
       if (event.target !== dragEl) return
       if (this.dragging !== this.wrapperEl.style.height) {
         window.removeEventListener('pointermove', this._dragHandler, false)
-        return
       }
       this.dragging = null
       this.wrapperEl.classList.add('js-console-transition')
       this.consoleEl.classList.add('js-console-transition')
-      if (this.wrapperEl.style.height === minHeight) {
-        const newHeight = window.innerHeight - 64
-        this.wrapperEl.style.height = `${newHeight}px`
-        this.consoleEl.style.height = `${newHeight}px`
+
+      if (Number(this.wrapperEl.style.height.slice(0, -2)) > midHeight) {
+        this.wrapperEl.style.height = `${maxHeight}px`
+        this.consoleEl.style.height = `${maxHeight}px`
       } else {
-        this.wrapperEl.style.height = minHeight
-        this.consoleEl.style.height = minHeight
+        this.wrapperEl.style.height = `${minHeight}px`
+        this.consoleEl.style.height = `${minHeight}px`
       }
+
       setTimeout(() => {
-        if (this.wrapperEl.style.height === minHeight) {
+        if (this.wrapperEl.style.height === `${minHeight}px`) {
           this.commandsEl.scroll({ top: this.commandsEl.scrollHeight, behaviour: 'smooth' })
         }
         this.wrapperEl.classList.remove('js-console-transition')
