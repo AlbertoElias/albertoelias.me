@@ -134,15 +134,12 @@ class JSConsole {
     })
 
     window.addEventListener('pointerup', (event) => {
-      if (!this.dragging || event.target !== dragEl) return
-      window.removeEventListener('pointermove', this._dragHandler, false)
-    })
-
-    dragEl.addEventListener('click', () => {
+      if (event.target !== dragEl) return
       if (this.dragging !== this.wrapperEl.style.height) {
-        this.dragging = null
+        window.removeEventListener('pointermove', this._dragHandler, false)
         return
       }
+      this.dragging = null
       this.wrapperEl.classList.add('js-console-transition')
       this.consoleEl.classList.add('js-console-transition')
       if (this.wrapperEl.style.height === minHeight) {
