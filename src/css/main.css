@@ -27,6 +27,7 @@
 	--icon-wrapper: #FFFFFF;
 	--icon: #171B19;
 	--console-height: 180px;
+	touch-action: none;
 }
 
 :root.green-theme {

@@ -106,11 +106,10 @@ class JSConsole {
    */
   _dragHandler (event) {
     event.preventDefault()
-    if (!event.touches && !this.dragging) return
+    if (!this.dragging) return
     // Converts from '180px' to Number
     const minHeight = Number(window.getComputedStyle(document.documentElement).getPropertyValue('--console-height').slice(0, -2))
-    const clientY = event.touches ? event.touches[0].clientY : event.clientY
-    const newHeight = window.innerHeight - clientY
+    const newHeight = window.innerHeight - event.clientY
     if (newHeight >= minHeight && newHeight <= window.innerHeight - 64) {
       this.wrapperEl.style.height = `${newHeight}px`
       this.consoleEl.style.height = `${newHeight}px`
@@ -128,16 +127,15 @@ class JSConsole {
       this.wrapperEl.style.height = minHeight
     }
     const dragEl = this.consoleEl.querySelector('.js-console-drag')
-    dragEl.addEventListener('touchmove', this._dragHandler)
 
-    dragEl.addEventListener('mousedown', () => {
+    dragEl.addEventListener('pointerdown', () => {
       this.dragging = this.wrapperEl.style.height
-      window.addEventListener('mousemove', this._dragHandler)
+      window.addEventListener('pointermove', this._dragHandler, false)
     })
 
-    window.addEventListener('mouseup', (event) => {
+    window.addEventListener('pointerup', (event) => {
       if (!this.dragging || event.target !== dragEl) return
-      window.removeEventListener('mousemove', this._dragHandler)
+      window.removeEventListener('pointermove', this._dragHandler, false)
     })
 
     dragEl.addEventListener('click', () => {
