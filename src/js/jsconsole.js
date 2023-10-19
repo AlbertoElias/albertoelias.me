@@ -124,26 +124,29 @@ class JSConsole {
    */
   initDraggable () {
     const minHeight = window.getComputedStyle(document.documentElement).getPropertyValue('--console-height')
+    if (this.wrapperEl.style.height === '') {
+      this.wrapperEl.style.height = minHeight
+    }
     const dragEl = this.consoleEl.querySelector('.js-console-drag')
     dragEl.addEventListener('touchmove', this._dragHandler)
 
     dragEl.addEventListener('mousedown', () => {
-      this.dragging = true
+      this.dragging = this.wrapperEl.style.height
       window.addEventListener('mousemove', this._dragHandler)
     })
 
-    window.addEventListener('mouseup', () => {
-      if (!this.dragging) return
-      this.dragging = false
+    window.addEventListener('mouseup', (event) => {
+      if (!this.dragging || event.target !== dragEl) return
       window.removeEventListener('mousemove', this._dragHandler)
     })
 
     dragEl.addEventListener('click', () => {
+      if (this.dragging !== this.wrapperEl.style.height) {
+        this.dragging = null
+        return
+      }
       this.wrapperEl.classList.add('js-console-transition')
       this.consoleEl.classList.add('js-console-transition')
-      if (this.wrapperEl.style.height === '') {
-        this.wrapperEl.style.height = minHeight
-      }
       if (this.wrapperEl.style.height === minHeight) {
         const newHeight = window.innerHeight - 64
         this.wrapperEl.style.height = `${newHeight}px`
