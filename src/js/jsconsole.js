@@ -141,11 +141,13 @@ class JSConsole {
       this.wrapperEl.classList.add('js-console-transition')
       this.consoleEl.classList.add('js-console-transition')
 
+      const endDragTime = new Date().getTime()
       const maxHeight = window.innerHeight - 64
       const midHeight = minHeight + Math.floor((maxHeight - minHeight) / 2)
       const wrapperHeight = Number(this.wrapperEl.style.height.slice(0, -2))
-      const isClick = wrapperHeight <= minHeight + 10 || wrapperHeight >= maxHeight - 10
-      const isFlick = checkFlick(this.startDragHeight, wrapperHeight, this.startDragTime, new Date().getTime())
+      const isClick = endDragTime - this.startDragTime < 100 &&
+        (this.startDragHeight <= minHeight + 10 || this.startDragHeight >= maxHeight - 10)
+      const isFlick = checkFlick(this.startDragHeight, wrapperHeight, this.startDragTime, endDragTime)
 
       if (
         (!isClick && isFlick !== -1 && wrapperHeight > midHeight) ||
