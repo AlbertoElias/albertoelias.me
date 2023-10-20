@@ -1,4 +1,5 @@
 /* global hljs */
+import { checkFlick } from './utils.js'
 
 hljs.configure({
   languages: ['javascript'],
@@ -105,7 +106,7 @@ class JSConsole {
    * @param {Event} event
    */
   _dragHandler (event) {
-    if (!this.dragging) return
+    if (!this.startDragHeight) return
     event.preventDefault()
     // Converts from '180px' to Number
     const minHeight = Number(window.getComputedStyle(document.documentElement).getPropertyValue('--console-height').slice(0, -2))
@@ -129,7 +130,8 @@ class JSConsole {
     const dragEl = this.consoleEl.querySelector('.js-console-drag')
 
     dragEl.addEventListener('pointerdown', () => {
-      this.dragging = this.wrapperEl.style.height
+      this.startDragHeight = Number(this.wrapperEl.style.height.slice(0, -2))
+      this.startDragTime = new Date().getTime()
       window.addEventListener('pointermove', this._dragHandler, false)
     })
 
@@ -141,11 +143,15 @@ class JSConsole {
 
       const maxHeight = window.innerHeight - 64
       const midHeight = minHeight + Math.floor((maxHeight - minHeight) / 2)
-      const wrapperHeight = this.wrapperEl.style.height
-      const wrapperHeightNumber = Number(wrapperHeight.slice(0, -2))
-      const isClick = this.dragging === wrapperHeight
+      const wrapperHeight = Number(this.wrapperEl.style.height.slice(0, -2))
+      const isClick = this.startDragHeight === wrapperHeight
+      const isFlick = checkFlick(this.startDragHeight, wrapperHeight, this.startDragTime, new Date().getTime())
 
-      if ((!isClick && wrapperHeightNumber > midHeight) || (isClick && wrapperHeightNumber === minHeight)) {
+      if (
+        (!isClick && isFlick !== -1 && wrapperHeight > midHeight) ||
+        (isClick && wrapperHeight === minHeight) ||
+        isFlick === 1
+      ) {
         this.wrapperEl.style.height = `${maxHeight}px`
         this.consoleEl.style.height = `${maxHeight}px`
       } else {
@@ -153,7 +159,7 @@ class JSConsole {
         this.consoleEl.style.height = `${minHeight}px`
       }
 
-      this.dragging = null
+      this.startDragHeight = null
       window.removeEventListener('pointermove', this._dragHandler, false)
       setTimeout(() => {
         if (this.wrapperEl.style.height === `${minHeight}px`) {
