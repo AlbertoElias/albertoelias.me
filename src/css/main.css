@@ -203,7 +203,7 @@ a {
 }
 
 .js-console-transition {
-	transition: height 0.5s ease-in-out;
+	transition: height 0.5s ease-out;
 }
 
 .js-console-wrapper {

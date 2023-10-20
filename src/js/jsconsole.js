@@ -144,7 +144,7 @@ class JSConsole {
       const maxHeight = window.innerHeight - 64
       const midHeight = minHeight + Math.floor((maxHeight - minHeight) / 2)
       const wrapperHeight = Number(this.wrapperEl.style.height.slice(0, -2))
-      const isClick = this.startDragHeight === wrapperHeight
+      const isClick = wrapperHeight <= minHeight + 10 || wrapperHeight >= maxHeight - 10
       const isFlick = checkFlick(this.startDragHeight, wrapperHeight, this.startDragTime, new Date().getTime())
 
       if (
